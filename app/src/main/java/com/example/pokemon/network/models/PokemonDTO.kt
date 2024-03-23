@@ -10,4 +10,7 @@ data class PokemonsDTO(
 data class PokemonDTO(
     val name: String,
     val url: String
-)
+) {
+    val index: String get() = url.split('/').dropLast(1).last()
+    val imageUrl: String get() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png"
+}
