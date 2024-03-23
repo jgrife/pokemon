@@ -1,6 +1,5 @@
 package com.example.pokemon.network.models
 
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -9,7 +8,7 @@ class PokemonDTOTest {
     @Test
     fun getIndex() {
         val model = PokemonDTO("Charizard", "https://pokeapi.co/api/v2/ability/1/")
-        assertEquals("1", model.index)
+        assertEquals("1", model.id)
     }
 
     @Test

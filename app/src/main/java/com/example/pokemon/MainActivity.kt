@@ -1,6 +1,7 @@
 package com.example.pokemon
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.example.pokemon.PokemonDetailsActivity.Companion.POKEMON_ID_KEY
 import com.example.pokemon.domain.Result
 import com.example.pokemon.network.models.PokemonDTO
 import com.example.pokemon.utils.ViewModelFactory
@@ -33,8 +35,10 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.pokemon_recycler_view)
-        recyclerView.adapter = PokemonAdapter {
-            // TODO handle click events
+        recyclerView.adapter = PokemonAdapter { pokemonId ->
+            val intent = Intent(applicationContext, PokemonDetailsActivity::class.java)
+            intent.putExtra(POKEMON_ID_KEY, pokemonId)
+            startActivity(intent)
         }
 
         setupObservers(recyclerView.adapter as PokemonAdapter)
@@ -49,7 +53,7 @@ class MainActivity : ComponentActivity() {
     }
 
     class PokemonAdapter(
-        private val onItemClick: (pokemonData: PokemonDTO) -> Unit
+        private val onItemClick: (pokemonId: String) -> Unit
     ) : Adapter<PokemonViewHolder>() {
 
         private var pokemonList: List<PokemonDTO> = emptyList()
@@ -70,13 +74,13 @@ class MainActivity : ComponentActivity() {
 
         override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
             val pokemonData = pokemonList[position]
-            holder.itemView.setOnClickListener { onItemClick(pokemonData) }
+            holder.itemView.setOnClickListener { onItemClick(pokemonData.id) }
             Picasso.get()
                 .load(pokemonData.imageUrl)
                 .placeholder(R.drawable.image_placeholder)
                 .into(holder.imageView)
             holder.nameView.text = pokemonData.name
-            holder.idView.text = pokemonData.index
+            holder.idView.text = pokemonData.id
         }
 
         override fun getItemCount() = pokemonList.size

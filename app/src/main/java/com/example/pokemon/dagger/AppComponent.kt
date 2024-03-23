@@ -2,6 +2,7 @@ package com.example.pokemon.dagger
 
 import com.example.pokemon.MainActivity
 import com.example.pokemon.PokemonApp
+import com.example.pokemon.PokemonDetailsActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -17,4 +18,5 @@ interface AppComponent {
 
     fun inject(app: PokemonApp)
     fun inject(mainActivity: MainActivity)
+    fun inject(mainActivity: PokemonDetailsActivity)
 }
