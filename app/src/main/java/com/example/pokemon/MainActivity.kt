@@ -11,9 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.pokemon.ui.theme.PokemonTheme
+import com.example.pokemon.utils.ViewModelFactory
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory<MainActivityVM>
+
+    private val viewModel: MainActivityVM by lazy {
+        viewModelFactory.get<MainActivityVM>(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
+        PokemonApp.getAppComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContent {
             PokemonTheme {
