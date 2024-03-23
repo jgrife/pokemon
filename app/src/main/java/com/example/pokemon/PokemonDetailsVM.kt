@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class PokemonDetailsVM @Inject constructor(private val repository: PokemonRepository) : ViewModel() {
 
-    private val _pokemonDetailsData: MutableLiveData<Result<PokemonDetailsDTO>> = MutableLiveData()
+    private val _pokemonDetailsData: MutableLiveData<Result<PokemonDetailsDTO>> = MutableLiveData(Result.Idle)
     val pokemonDetailsData: LiveData<Result<PokemonDetailsDTO>> = _pokemonDetailsData
 
     fun getPokemonDetails(pokemonId: String?) {

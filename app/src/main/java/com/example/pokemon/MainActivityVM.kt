@@ -12,14 +12,14 @@ import javax.inject.Inject
 
 class MainActivityVM @Inject constructor(private val repository: PokemonRepository) : ViewModel() {
 
-    private val _pokemonData: MutableLiveData<Result<PokemonsDTO>> = MutableLiveData()
+    private val _pokemonData: MutableLiveData<Result<PokemonsDTO>> = MutableLiveData(Result.Idle)
     val pokemonData: LiveData<Result<PokemonsDTO>> = _pokemonData
 
     init {
         getPokemons()
     }
 
-    fun getPokemons() {
+    private fun getPokemons() {
         _pokemonData.value = Result.Loading
         viewModelScope.launch {
             val pokemonData = repository.getPokemons()
