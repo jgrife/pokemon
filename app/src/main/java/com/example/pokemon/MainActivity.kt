@@ -9,28 +9,23 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.pokemon.PokemonDetailsActivity.Companion.POKEMON_ID_KEY
 import com.example.pokemon.domain.Result
 import com.example.pokemon.network.models.PokemonDTO
-import com.example.pokemon.utils.ViewModelFactory
 import com.squareup.picasso.Picasso
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory<MainActivityVM>
-
-    private val viewModel: MainActivityVM by lazy {
-        viewModelFactory.get<MainActivityVM>(this)
-    }
+    private val viewModel by viewModels<MainActivityVM>()
 
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        PokemonApp.getAppComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

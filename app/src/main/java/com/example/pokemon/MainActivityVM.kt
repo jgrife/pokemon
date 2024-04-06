@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.pokemon.domain.PokemonRepository
 import com.example.pokemon.domain.Result
 import com.example.pokemon.network.models.PokemonsDTO
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MainActivityVM @Inject constructor(private val repository: PokemonRepository) : ViewModel() {
 
     private val _pokemonData: MutableLiveData<Result<PokemonsDTO>> = MutableLiveData(Result.Idle)

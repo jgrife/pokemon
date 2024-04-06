@@ -4,23 +4,19 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import com.example.pokemon.domain.Result
 import com.example.pokemon.network.models.PokemonDetailsDTO
-import com.example.pokemon.utils.ViewModelFactory
 import com.squareup.picasso.Picasso
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PokemonDetailsActivity : ComponentActivity() {
     companion object {
         const val POKEMON_ID_KEY = "pokemonId"
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory<PokemonDetailsVM>
-
-    private val viewModel: PokemonDetailsVM by lazy {
-        viewModelFactory.get<PokemonDetailsVM>(this)
-    }
+    private val viewModel by viewModels<PokemonDetailsVM>()
 
     private lateinit var heroImageView: ImageView
     private lateinit var nameView: TextView
@@ -28,7 +24,6 @@ class PokemonDetailsActivity : ComponentActivity() {
     private lateinit var heightView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        PokemonApp.getAppComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokemon_details)
 

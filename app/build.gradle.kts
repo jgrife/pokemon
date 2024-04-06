@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -47,6 +48,11 @@ android {
     }
 }
 
+// Allow references to generated Hilt code
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -61,10 +67,11 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
-    implementation(libs.dagger)
     implementation(libs.androidx.recyclerview)
-    kapt(libs.dagger.compiler)
-    kapt(libs.dagger.android.processor)
+
+    implementation(libs.dagger)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
     implementation(libs.picasso)
 
