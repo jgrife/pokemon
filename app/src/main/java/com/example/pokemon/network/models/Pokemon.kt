@@ -2,14 +2,14 @@ package com.example.pokemon.network.models
 
 import com.google.gson.annotations.SerializedName
 
-data class PokemonsDTO(
+data class Pokemons(
     val count: Int,
     val next: String?,
     val previous: String?,
-    val results: List<PokemonDTO>,
+    val results: List<Pokemon>,
 )
 
-data class PokemonDTO(
+data class Pokemon(
     val name: String,
     val url: String
 ) {
@@ -17,37 +17,37 @@ data class PokemonDTO(
     val imageUrl: String get() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png"
 }
 
-data class PokemonDetailsDTO(
+data class PokemonDetails(
     val name: String,
     val id: Int,
     val height: Int,
     val weight: Int,
-    val sprites: SpritesDTO,
-    val states: List<StatDTO>,
-    val types: List<TypeDTO>
+    val sprites: Sprites,
+    val states: List<Stat>,
+    val types: List<Type>
 ) {
     val imageUrl: String get() = sprites.frontImageUrl
 }
 
-data class SpritesDTO(
+data class Sprites(
     @SerializedName("front_default")
     val frontImageUrl: String
 )
 
-data class StatDTO(
-    val stats: StatDetailsDTO
+data class Stat(
+    val stats: StatDetails
 )
 
-data class StatDetailsDTO(
+data class StatDetails(
     val name: String,
     val url: String
 )
 
-data class TypeDTO(
-    val types: TypeDetailsDTO
+data class Type(
+    val types: TypeDetails
 )
 
-data class TypeDetailsDTO(
+data class TypeDetails(
     val name: String,
     val url: String
 )

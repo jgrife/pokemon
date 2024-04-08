@@ -7,13 +7,13 @@ class PokemonDTOTest {
 
     @Test
     fun getIndex() {
-        val model = PokemonDTO("Charizard", "https://pokeapi.co/api/v2/ability/1/")
+        val model = Pokemon("Charizard", "https://pokeapi.co/api/v2/ability/1/")
         assertEquals("1", model.id)
     }
 
     @Test
     fun getImageUrl() {
-        val model = PokemonDTO("Charizard", "https://pokeapi.co/api/v2/ability/1/")
+        val model = Pokemon("Charizard", "https://pokeapi.co/api/v2/ability/1/")
         assertEquals("http://pokeapi.co/media/sprites/pokemon/1.png", model.imageUrl)
     }
 }

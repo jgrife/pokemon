@@ -5,8 +5,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
-import com.example.pokemon.domain.Result
-import com.example.pokemon.network.models.PokemonDetailsDTO
+import com.example.pokemon.ui.UIResult
+import com.example.pokemon.network.models.PokemonDetails
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,19 +39,19 @@ class PokemonDetailsActivity : ComponentActivity() {
 
     private fun setupObservers() {
         viewModel.pokemonDetailsData.observe(this) { result ->
-            if (result is Result.Success) {
+            if (result is UIResult.Success) {
                 bindData(result.data)
             }
         }
     }
 
-    private fun bindData(pokemonDetailsDTO: PokemonDetailsDTO) {
+    private fun bindData(pokemonDetails: PokemonDetails) {
         Picasso.get()
-            .load(pokemonDetailsDTO.imageUrl)
+            .load(pokemonDetails.imageUrl)
             .placeholder(R.drawable.image_placeholder)
             .into(heroImageView)
-        nameView.text = pokemonDetailsDTO.name
-        weightView.text = pokemonDetailsDTO.weight.toString()
-        heightView.text = pokemonDetailsDTO.height.toString()
+        nameView.text = pokemonDetails.name
+        weightView.text = pokemonDetails.weight.toString()
+        heightView.text = pokemonDetails.height.toString()
     }
 }

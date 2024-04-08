@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.converter.gson)
 
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.paging.runtime)
 
     implementation(libs.dagger)
     implementation(libs.hilt.android)

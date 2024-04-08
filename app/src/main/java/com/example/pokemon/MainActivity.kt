@@ -13,8 +13,8 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.pokemon.PokemonDetailsActivity.Companion.POKEMON_ID_KEY
-import com.example.pokemon.domain.Result
-import com.example.pokemon.network.models.PokemonDTO
+import com.example.pokemon.ui.UIResult
+import com.example.pokemon.network.models.Pokemon
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
 
     private fun setupObservers(pokemonAdapter: PokemonAdapter) {
         viewModel.pokemonData.observe(this) { result ->
-            if (result is Result.Success) {
+            if (result is UIResult.Success) {
                 pokemonAdapter.setData(result.data.results)
             }
         }
@@ -51,10 +51,10 @@ class MainActivity : ComponentActivity() {
         private val onItemClick: (pokemonId: String) -> Unit
     ) : Adapter<PokemonViewHolder>() {
 
-        private var pokemonList: List<PokemonDTO> = emptyList()
+        private var pokemonList: List<Pokemon> = emptyList()
 
         @SuppressLint("NotifyDataSetChanged")
-        fun setData(pokemonList: List<PokemonDTO>) {
+        fun setData(pokemonList: List<Pokemon>) {
             this.pokemonList = pokemonList
             // NOTE: could use something like DiffUtils to animate this list in here. Especially useful if we wanted to
             // update, remove, add pokemon to the list vs. using this heavy-handed `notifyDataSetChanged`, which will redraw
