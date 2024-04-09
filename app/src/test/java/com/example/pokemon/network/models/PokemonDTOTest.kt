@@ -1,5 +1,6 @@
 package com.example.pokemon.network.models
 
+import com.example.pokemon.data.remote.models.Pokemon
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

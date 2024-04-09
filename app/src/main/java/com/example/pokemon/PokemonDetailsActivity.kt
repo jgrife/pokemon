@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import com.example.pokemon.ui.UIResult
-import com.example.pokemon.network.models.PokemonDetails
+import com.example.pokemon.data.remote.models.PokemonDetails
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 

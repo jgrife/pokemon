@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 }
 
@@ -48,13 +48,7 @@ android {
     }
 }
 
-// Allow references to generated Hilt code
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -63,18 +57,27 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.material)
 
+    // RETROFIT
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
-    implementation(libs.androidx.recyclerview)
+    // PICASSO
+    implementation(libs.picasso)
+
+    // PAGING 3
     implementation(libs.androidx.paging.runtime)
+
+    // ROOM
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.paging)
 
     implementation(libs.dagger)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-
-    implementation(libs.picasso)
+    ksp(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

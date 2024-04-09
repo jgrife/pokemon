@@ -1,7 +1,7 @@
-package com.example.pokemon.network
+package com.example.pokemon.data.remote
 
-import com.example.pokemon.network.models.PokemonDetails
-import com.example.pokemon.network.models.Pokemons
+import com.example.pokemon.data.remote.models.PokemonDetails
+import com.example.pokemon.data.remote.models.Pokemons
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -31,7 +31,7 @@ interface PokemonService {
     suspend fun getPokemons(
         @Query("limit") limit: Int,
         @Query("offset") offset: Int,
-    ): Response<Pokemons>
+    ): Pokemons
 
     @GET("v2/pokemon/{id}")
     suspend fun getPokemonDetails(

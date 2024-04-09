@@ -1,4 +1,4 @@
-package com.example.pokemon.network.models
+package com.example.pokemon.data.remote.models
 
 import com.google.gson.annotations.SerializedName
 
@@ -15,6 +15,7 @@ data class Pokemon(
 ) {
     val id: String get() = url.split('/').dropLast(1).last()
     val imageUrl: String get() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png"
+    val capitalizeName: String get() = name.replaceFirstChar { it.titlecase() }
 }
 
 data class PokemonDetails(

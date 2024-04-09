@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokemon.domain.PokemonRepository
 import com.example.pokemon.ui.UIResult
-import com.example.pokemon.network.models.PokemonDetails
+import com.example.pokemon.data.remote.models.PokemonDetails
 import com.example.pokemon.ui.toUIResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
