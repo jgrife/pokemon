@@ -3,10 +3,12 @@ package com.example.pokemon
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
-import com.example.pokemon.ui.UIResult
 import com.example.pokemon.data.remote.models.PokemonDetails
+import com.example.pokemon.ui.UIResult
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,6 +43,10 @@ class PokemonDetailsActivity : ComponentActivity() {
         viewModel.pokemonDetailsData.observe(this) { result ->
             if (result is UIResult.Success) {
                 bindData(result.data)
+            } else if (result is UIResult.Error) {
+                Toast
+                    .makeText(this, "There was the following error: ${result.e.message}", LENGTH_LONG)
+                    .show()
             }
         }
     }
