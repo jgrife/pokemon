@@ -50,7 +50,7 @@ class PokemonDetailsActivity : ComponentActivity() {
             .load(pokemonDetails.imageUrl)
             .placeholder(R.drawable.image_placeholder)
             .into(heroImageView)
-        nameView.text = pokemonDetails.name
+        nameView.text = pokemonDetails.capitalizeName
         weightView.text = pokemonDetails.weight.toString()
         heightView.text = pokemonDetails.height.toString()
     }

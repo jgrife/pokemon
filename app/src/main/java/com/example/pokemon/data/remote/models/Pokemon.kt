@@ -28,6 +28,7 @@ data class PokemonDetails(
     val types: List<Type>
 ) {
     val imageUrl: String get() = sprites.frontImageUrl
+    val capitalizeName: String get() = name.replaceFirstChar { it.titlecase() }
 }
 
 data class Sprites(
