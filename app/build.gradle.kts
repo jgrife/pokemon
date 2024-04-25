@@ -67,8 +67,12 @@ dependencies {
     // PICASSO
     implementation(libs.picasso)
 
+    // Coil
+    implementation(libs.coil.compose)
+
     // PAGING 3
     implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
 
     // ROOM
     implementation(libs.androidx.room.ktx)
